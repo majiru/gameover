@@ -1,0 +1,34 @@
+diff --git a/libultraship/src/Context.cpp b/libultraship/src/Context.cpp
+index cddeaf3..dde5e7f 100644
+--- a/libultraship/src/Context.cpp
++++ b/libultraship/src/Context.cpp
+@@ -11,6 +11,8 @@
+ #include "port/switch/SwitchImpl.h"
+ #elif defined(__WIIU__)
+ #include "port/wiiu/WiiUImpl.h"
++#elif defined(__linux__)
++#include <filesystem>
+ #endif
+ 
+ namespace LUS {
+@@ -275,6 +277,20 @@ std::string Context::GetAppDirectoryPath() {
+     if (fpath != NULL) {
+         return std::string(fpath);
+     }
++
++    std::filesystem::path dir;
++    fpath = std::getenv("XDG_DATA_HOME");
++    if (fpath != NULL) {
++        dir += fpath;
++	dir += "/soh";
++	return std::string(dir);
++    }
++    fpath = std::getenv("HOME");
++    if (fpath != NULL) {
++        dir += fpath;
++	dir += "/.local/share/soh";
++	return std::string(dir);
++    }
+ #endif
+ 
+     return ".";
