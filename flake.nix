@@ -25,6 +25,7 @@
           games.pokecrystal = callPackage (./crystal.nix) { inherit inputs; };
           games.pokered = callPackage (./red.nix) { inherit inputs; };
           games.shipwright = callPackage (./soh.nix) { };
+          games.zelda3 = callPackage (./zelda3.nix) { };
         };
     in
     utils.lib.eachDefaultSystem

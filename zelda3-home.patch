@@ -1,0 +1,58 @@
+diff --git a/config.c b/config.c
+index 205bc51..07b32c4 100644
+--- a/config.c
++++ b/config.c
+@@ -514,13 +514,18 @@ static bool ParseOneConfigFile(const char *filename, int depth) {
+ }
+ 
+ void ParseConfigFile(const char *filename) {
++  char *systemloc;
++  char buf[4096];
+   g_config.msuvolume = 100;  // default msu volume, 100%
+ 
+   if (filename != NULL || !ParseOneConfigFile("zelda3.user.ini", 0)) {
+     if (filename == NULL)
+       filename = "zelda3.ini";
+-    if (!ParseOneConfigFile(filename, 0))
+-      fprintf(stderr, "Warning: Unable to read config file %s\n", filename);
++    if (!ParseOneConfigFile(filename, 0)) {
++      systemloc = getenv("Z3INI");
++      if(systemloc == NULL || !ParseOneConfigFile(systemloc, 0))
++        fprintf(stderr, "Warning: Unable to read config file %s\n", filename);
++    }
+   }
+   RegisterDefaultKeys();
+ }
+diff --git a/main.c b/main.c
+index 409018f..77a218c 100644
+--- a/main.c
++++ b/main.c
+@@ -809,7 +809,12 @@ uint32 g_asset_sizes[kNumberOfAssets];
+ 
+ static void LoadAssets() {
+   size_t length = 0;
+-  uint8 *data = ReadWholeFile("tables/zelda3_assets.dat", &length);
++  uint8 *data = NULL;
++  char *datloc = getenv("Z3DAT");
++  if(datloc != NULL)
++	  data = ReadWholeFile(datloc, &length);
++  if(!data)
++    data = ReadWholeFile("tables/zelda3_assets.dat", &length);
+   if (!data)
+     data = ReadWholeFile("zelda3_assets.dat", &length);
+   if (!data) Die("Failed to read zelda3_assets.dat. Please see the README for information about how you get this file.");
+@@ -843,7 +848,13 @@ static void LoadAssets() {
+ // Go some steps up and find zelda3.ini
+ static void SwitchDirectory() {
+   char buf[4096];
+-  if (!getcwd(buf, sizeof(buf) - 32))
++  char *home;
++  if ((home = getenv("HOME")) != NULL){
++    snprintf(buf, sizeof buf, "%s/.zelda3", home);
++    int err = chdir(buf);
++    (void)err;
++    return;
++  } else if (!getcwd(buf, sizeof(buf) - 32))
+     return;
+   size_t pos = strlen(buf);
+ 
