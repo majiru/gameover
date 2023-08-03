@@ -1,14 +1,19 @@
 { lib
 , stdenv
-, inputs
+, fetchFromGitHub
 , rgbds
 }:
 
 stdenv.mkDerivation {
   pname = "pokecrystal";
-  version = "unstable-2023-06-22";
+  version = "unstable-2023-06-26";
 
-  src = inputs.pokecrystal;
+  src = fetchFromGitHub {
+    owner = "pret";
+    repo = "pokecrystal";
+    rev = "768b3bdec15ac9f79e43f88695514494c93f2f99";
+    hash = "sha256-NPUJSdXUx/3DBTr5uzZ3DcDXLXHK3BJRlM9p63ULJqw=";
+  };
 
   strictDepts = true;
   enableParallelBuilding = true;

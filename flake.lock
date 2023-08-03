@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1690893464,
-        "narHash": "sha256-YiFBn3K4l1AzVt8NeSg9ZJNvHxX2k+AkS74s/s4ASRA=",
+        "lastModified": 1691003216,
+        "narHash": "sha256-Qq/MPkhS12Bl0X060pPvX3v9ac3f2rRQfHjjozPh/Qs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e0e6b6909977de63dab514efbf5470bc31e7055e",
+        "rev": "4a56ce9727a0c5478a836a0d8a8f641c5b9a3d5f",
         "type": "github"
       },
       "original": {
@@ -14,43 +14,9 @@
         "type": "indirect"
       }
     },
-    "pokecrystal": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1690419540,
-        "narHash": "sha256-NPUJSdXUx/3DBTr5uzZ3DcDXLXHK3BJRlM9p63ULJqw=",
-        "owner": "pret",
-        "repo": "pokecrystal",
-        "rev": "768b3bdec15ac9f79e43f88695514494c93f2f99",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pret",
-        "repo": "pokecrystal",
-        "type": "github"
-      }
-    },
-    "pokered": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1689556926,
-        "narHash": "sha256-rQrfLCxNG9xirlWLemJ8KWUAxuriq6GN2ivAZauTcmQ=",
-        "owner": "pret",
-        "repo": "pokered",
-        "rev": "a38c7922dda3b6650a1dfe0fe544175ded259b19",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pret",
-        "repo": "pokered",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "pokecrystal": "pokecrystal",
-        "pokered": "pokered",
         "utils": "utils"
       }
     },
