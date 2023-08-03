@@ -21,11 +21,14 @@
         let
           callPackage = pkgs.lib.callPackageWith pkgs;
         in
-        {
+        rec {
           games.pokecrystal = callPackage (./crystal.nix) { inherit inputs; };
           games.pokered = callPackage (./red.nix) { inherit inputs; };
           games.shipwright = callPackage (./soh.nix) { };
           games.zelda3 = callPackage (./zelda3.nix) { };
+          games.devkitpro = callPackage (./devkitpro.nix) { };
+          games.pokeemerald = callPackage (./emerald.nix) { devkitpro = games.devkitpro; };
+          games.firered = callPackage (./firered.nix) { devkitpro = games.devkitpro; };
         };
     in
     utils.lib.eachDefaultSystem

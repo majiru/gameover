@@ -5,6 +5,7 @@ The following is provided:
 
 * Pokemon Red/Blue Disassembly: `games.pokered`
 * Pokemon Crystal Disassembly: `games.pokecrystal`
+* Pokemon Emerald Decomp: `games.pokeemerald`
+* Pokemon Firered Decomp: `games.pokefirered`
 * Ocarina of Time PC Port: `games.shipwright`
 * Link to the Past PC Port: `games.zelda3`
-
