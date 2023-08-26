@@ -6,7 +6,7 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "pokecrystal";
+  pname = "pokegold";
   version = "unstable-2023-08-15";
 
   src = fetchFromGitHub {

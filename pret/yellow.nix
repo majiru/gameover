@@ -6,7 +6,7 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "pokered";
+  pname = "pokeyellow";
   version = "unstable-2023-07-16";
 
   src = fetchFromGitHub {
