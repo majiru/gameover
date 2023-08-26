@@ -2,20 +2,21 @@
 , stdenv
 , fetchFromGitHub
 , rgbds
+, unstableGitUpdater
 }:
 
 stdenv.mkDerivation {
   pname = "pokecrystal";
-  version = "unstable-2023-06-26";
+  version = "unstable-2023-08-16";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokecrystal";
-    rev = "768b3bdec15ac9f79e43f88695514494c93f2f99";
-    hash = "sha256-NPUJSdXUx/3DBTr5uzZ3DcDXLXHK3BJRlM9p63ULJqw=";
+    rev = "0d899cbd3b318b50776aac0a4aafad6133a5e647";
+    hash = "sha256-dwtvNfpFHPeM5syCd9IUPRM/QDGFO//hNz59VaP4sao=";
   };
 
-  strictDepts = true;
+  strictDeps = true;
   enableParallelBuilding = true;
   nativeBuildInputs = [ rgbds ];
 
@@ -24,9 +25,13 @@ stdenv.mkDerivation {
     cp pokecrystal.gbc $out/rom/
   '';
 
-  meta = with lib; {
-    description = "pokemon crystal decomp";
+  passthru.updateScript = unstableGitUpdater { };
+
+  meta = {
+    description = "Pokemon Crystal decomp";
     homepage = "https://github.com/pret/pokecrystal/";
-    maintainers = with maintainers; [ moody ];
+    license = lib.licenses.unfree;
+    maintainers = with lib.maintainers; [ moody ];
+    platforms = lib.platforms.all;
   };
 }

@@ -2,20 +2,21 @@
 , stdenv
 , fetchFromGitHub
 , rgbds
+, unstableGitUpdater
 }:
 
 stdenv.mkDerivation {
   pname = "pokered";
-  version = "unstable-2023-07-16";
+  version = "unstable-2023-08-15";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokered";
-    rev = "a38c7922dda3b6650a1dfe0fe544175ded259b19";
-    hash = "sha256-rQrfLCxNG9xirlWLemJ8KWUAxuriq6GN2ivAZauTcmQ=";
+    rev = "fa18a75dc55c58505b7c643560bc7d8f1198995b";
+    hash = "sha256-+bRXXdrpmuQ3pwRVrKFx01CkfaSnr5GJuN5L3dl9szM=";
   };
 
-  strictDepts = true;
+  strictDeps = true;
   enableParallelBuilding = true;
   nativeBuildInputs = [ rgbds ];
 
@@ -24,9 +25,13 @@ stdenv.mkDerivation {
     cp poke*.gbc $out/rom/
   '';
 
-  meta = with lib; {
-    description = "pokemon red/blue decomp";
+  passthru.updateScript = unstableGitUpdater { };
+
+  meta = {
+    description = "Pokemon Red/Blue decomp";
     homepage = "https://github.com/pret/pokered/";
-    maintainers = with maintainers; [ moody ];
+    license = lib.licenses.unfree;
+    maintainers = with lib.maintainers; [ moody ];
+    platforms = lib.platforms.all;
   };
 }
