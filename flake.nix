@@ -19,7 +19,9 @@
           games.zelda3 = callPackage (./zelda3.nix) { };
           games.devkitpro = callPackage (./devkitpro.nix) { };
           games.pokeemerald = callPackage (./emerald.nix) { devkitpro = games.devkitpro; };
-          games.firered = callPackage (./firered.nix) { devkitpro = games.devkitpro; };
+          games.pokefirered = callPackage (./firered.nix) { devkitpro = games.devkitpro; };
+          games.pokegold = callPackage (./gold.nix) { };
+          games.pokeyellow = callPackage (./yellow.nix) { };
         };
     in
     utils.lib.eachDefaultSystem
