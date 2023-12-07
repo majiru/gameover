@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation {
   pname = "pokeyellow";
-  version = "unstable-2023-07-16";
+  version = "unstable-2023-11-22";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokeyellow";
-    rev = "613e1c64bd9668f996bb42ead52eabf1ae45a660";
-    hash = "sha256-uUUBkSGkZrQtigIwaaCTty3hHj2d94TFC2AFZeTZev4=";
+    rev = "abc34756d131b327eff548aa13aff8e4b677a96e";
+    hash = "sha256-Y2aL5yzxrjPmXlZ9jvxTWMqmqaJD2D4F0PG6vVvimv4=";
   };
 
   strictDeps = true;
@@ -30,7 +30,6 @@ stdenv.mkDerivation {
   meta = {
     description = "Pokemon Yellow decomp";
     homepage = "https://github.com/pret/pokeyellow/";
-    license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [ moody ];
     platforms = lib.platforms.all;
   };

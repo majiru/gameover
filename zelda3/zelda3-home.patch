@@ -1,7 +1,7 @@
-diff --git a/config.c b/config.c
+diff --git a/src/config.c b/src/config.c
 index 205bc51..07b32c4 100644
---- a/config.c
-+++ b/config.c
+--- a/src/config.c
++++ b/src/config.c
 @@ -514,13 +514,18 @@ static bool ParseOneConfigFile(const char *filename, int depth) {
  }
  
@@ -23,21 +23,21 @@ index 205bc51..07b32c4 100644
    }
    RegisterDefaultKeys();
  }
-diff --git a/main.c b/main.c
+diff --git a/src/main.c b/src/main.c
 index 409018f..77a218c 100644
---- a/main.c
-+++ b/main.c
+--- a/src/main.c
++++ b/src/main.c
 @@ -809,7 +809,12 @@ uint32 g_asset_sizes[kNumberOfAssets];
  
  static void LoadAssets() {
    size_t length = 0;
--  uint8 *data = ReadWholeFile("tables/zelda3_assets.dat", &length);
+-  uint8 *data = ReadWholeFile("zelda3_assets.dat", &length);
 +  uint8 *data = NULL;
 +  char *datloc = getenv("Z3DAT");
 +  if(datloc != NULL)
 +	  data = ReadWholeFile(datloc, &length);
 +  if(!data)
-+    data = ReadWholeFile("tables/zelda3_assets.dat", &length);
++    data = ReadWholeFile("zelda3_assets.dat", &length);
    if (!data)
      data = ReadWholeFile("zelda3_assets.dat", &length);
    if (!data) Die("Failed to read zelda3_assets.dat. Please see the README for information about how you get this file.");

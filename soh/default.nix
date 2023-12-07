@@ -47,12 +47,12 @@
 
 stdenv.mkDerivation {
   pname = "shipwright";
-  version = "7.1.0";
+  version = "8.0.3";
 
   src = fetchgit {
     url = "https://github.com/HarbourMasters/Shipwright.git";
-    rev = "7.1.0";
-    sha256 = "sha256-Q1Z2uSZpRk6a/ZeJkoxhFhUcDch5f+D14cIleLZ0Hes=";
+    rev = "8.0.3";
+    sha256 = "sha256-khbfVzoMW10jbPzf4Ib9adFe3LNBFb4twGkh9ELgE90=";
     fetchSubmodules = true;
   };
 
@@ -93,7 +93,6 @@ stdenv.mkDerivation {
   '';
 
   patches = [
-    ./soh-otrloc.patch
     ./soh-home.patch
   ];
 

@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation {
   pname = "pokegold";
-  version = "unstable-2023-08-15";
+  version = "unstable-2023-11-21";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokegold";
-    rev = "e06a6b1550abb88e24980493615e96393cd7ce98";
-    hash = "sha256-ZuhamUMKGHGam84a27YyYbpuVWnoH/Vo0E6sc3BSMPk=";
+    rev = "f69e256d60fa633c6d7a976590018fbe60a02adc";
+    hash = "sha256-B1NT7unkxlGwdajiWGV9jpAD4mXXzf/pH8P0YvAHyDw=";
   };
 
   strictDeps = true;
@@ -30,7 +30,6 @@ stdenv.mkDerivation {
   meta = {
     description = "Pokemon Gold/SIlver decomp";
     homepage = "https://github.com/pret/pokegold/";
-    license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [ moody ];
     platforms = lib.platforms.all;
   };

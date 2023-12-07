@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation {
   pname = "pokered";
-  version = "unstable-2023-08-15";
+  version = "unstable-2023-12-06";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokered";
-    rev = "fa18a75dc55c58505b7c643560bc7d8f1198995b";
-    hash = "sha256-+bRXXdrpmuQ3pwRVrKFx01CkfaSnr5GJuN5L3dl9szM=";
+    rev = "f6017ddbfd7e14ea39b81ce3393de9117e7310d9";
+    hash = "sha256-mU09W2onabprdheWEt7KqZm/hsBaZ45Xy4FCm26wDr8=";
   };
 
   strictDeps = true;
@@ -30,7 +30,6 @@ stdenv.mkDerivation {
   meta = {
     description = "Pokemon Red/Blue decomp";
     homepage = "https://github.com/pret/pokered/";
-    license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [ moody ];
     platforms = lib.platforms.all;
   };

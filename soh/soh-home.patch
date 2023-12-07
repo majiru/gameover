@@ -1,8 +1,8 @@
 diff --git a/libultraship/src/Context.cpp b/libultraship/src/Context.cpp
-index cddeaf3..dde5e7f 100644
+index 6140e04..0396c8d 100644
 --- a/libultraship/src/Context.cpp
 +++ b/libultraship/src/Context.cpp
-@@ -11,6 +11,8 @@
+@@ -12,6 +12,8 @@
  #include "port/switch/SwitchImpl.h"
  #elif defined(__WIIU__)
  #include "port/wiiu/WiiUImpl.h"
@@ -11,7 +11,7 @@ index cddeaf3..dde5e7f 100644
  #endif
  
  namespace LUS {
-@@ -275,6 +277,20 @@ std::string Context::GetAppDirectoryPath() {
+@@ -338,6 +340,20 @@ std::string Context::GetAppDirectoryPath(std::string appName) {
      if (fpath != NULL) {
          return std::string(fpath);
      }
@@ -31,4 +31,4 @@ index cddeaf3..dde5e7f 100644
 +    }
  #endif
  
-     return ".";
+ #ifdef NON_PORTABLE

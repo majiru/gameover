@@ -24,13 +24,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "zelda3";
-  version = "0.2";
+  version = "0.3";
 
   src = fetchFromGitHub {
     owner = "snesrev";
     repo = "zelda3";
-    rev = "v${finalAttrs.version}-beta";
-    hash = "sha256-l6nhLM4wIMRQk2VieV9orMsCoO0cOygMjs42Siazo0Q=";
+    rev = "v${finalAttrs.version}";
+    hash = "sha256-jKCLZ8lqvkN6OmYTZtjxXgbeUUnzOtYaeWmc4rCwwF0=";
   };
 
   nativeBuildInputs = [
@@ -48,14 +48,14 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   preBuild = ''
-    ln -s ${rom} tables/zelda3.sfc
+    ln -s ${rom} zelda3.sfc
   '';
   buildFlags = [ "PYTHON=${mypython}/bin/python3" ];
 
   installPhase = ''
     mv zelda3 zelda3.unwrapped
     install -Dm755 -t $out/bin zelda3.unwrapped
-    install -Dm644 -t $out/data tables/zelda3_assets.dat
+    install -Dm644 -t $out/data zelda3_assets.dat
     install -Dm644 -t $out/data zelda3.ini
     makeWrapper $out/bin/zelda3.unwrapped $out/bin/zelda3 \
       --set Z3DAT $out/data/zelda3_assets.dat --set Z3INI $out/data/zelda3.ini
