@@ -6,6 +6,15 @@
 , gcc-unwrapped
 }:
 
+# devkitpro kinda sucks and won't
+# let us repackage, so we have to pull
+# and patch stuff from their pacman repos.
+# To find the versions of these packages,
+# consult the .db file for the repository
+# which is a .tgz with descriptions for
+# all the packages:
+# https://pkg.devkitpro.org/packages/linux/x86_64/dkp-linux.db
+# https://pkg.devkitpro.org/packages/dkp-libs.db
 stdenv.mkDerivation (finalAttrs: {
   pname = "devkitpro";
   version = "61-5";
@@ -25,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
       hash = "sha256-SplC0LbsE6+4QxylA+wQqEOXHlpb2sra0zscM3LIo+U=";
     })
 
-     # GBA
+    # GBA
     (fetchurl {
       url = "https://pkg.devkitpro.org/packages/linux/x86_64/gba-tools-1.2.0-1-x86_64.pkg.tar.xz";
       hash = "sha256-nzu0/qpcTQSylFMd+UBO1KzqT3NGGkUAHl3/WY6ADeg=";
@@ -34,11 +43,11 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://pkg.devkitpro.org/packages/libgba-0.5.2-2-any.pkg.tar.xz";
       hash = "sha256-yoBvzpPk+A1VV3+np800sS+ik0ruaoVdMGwxHJzCyHY=";
     })
-     (fetchurl {
+    (fetchurl {
       url = "https://pkg.devkitpro.org/packages/maxmod-gba-1.0.15-1-any.pkg.tar.xz";
       hash = "sha256-MMO/PjvmnvsSG9KqrLmgDuUd/r4duziE7jKlaaqEdvI=";
     })
-     (fetchurl {
+    (fetchurl {
       url = "https://pkg.devkitpro.org/packages/libfat-gba-1.1.5-1-any.pkg.tar.xz";
       hash = "sha256-sOzyp1GWEFBJ5R4NteecIb7rdVvfjDqRKSpvbeaeA7M=";
     })
