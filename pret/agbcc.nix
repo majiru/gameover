@@ -2,7 +2,7 @@
 , stdenv
 , fetchFromGitHub
 , pkgsCross
-, bash
+, runtimeShell
 }:
 
 stdenv.mkDerivation {
@@ -29,7 +29,7 @@ stdenv.mkDerivation {
   patchPhase = ''
     runHook prePatch
 
-    substituteInPlace libc/Makefile --replace "/bin/bash" "${bash}/bin/bash"
+    substituteInPlace libc/Makefile --replace "/bin/bash" "${runtimeShell}"
 
     runHook postPatch
   '';

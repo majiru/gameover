@@ -5,7 +5,7 @@
 , pkg-config
 , pkgsCross
 , agbcc
-, bash
+, runtimeShell
 }:
 
 stdenv.mkDerivation {
@@ -36,7 +36,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     cp -r ${agbcc}/tools ./
-    make SHELL="${bash}/bin/bash"
+    make SHELL="${runtimeShell}"
 
     runHook postBuild
   '';

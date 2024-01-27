@@ -5,7 +5,7 @@
 , pkg-config
 , pkgsCross
 , agbcc
-, bash
+, runtimeShell
 }:
 
 stdenv.mkDerivation {
@@ -36,7 +36,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     cp -r ${agbcc}/tools ./
-    make SHELL="${bash}/bin/bash" firered leafgreen firered_rev1 leafgreen_rev1
+    make SHELL="${runtimeShell}" firered leafgreen firered_rev1 leafgreen_rev1
 
     runHook postBuild
   '';
