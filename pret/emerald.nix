@@ -3,40 +3,49 @@
 , fetchFromGitHub
 , libpng
 , pkg-config
-, devkitpro
+, pkgsCross
+, agbcc
+, bash
 }:
 
 stdenv.mkDerivation {
   pname = "pokeemerald";
-  version = "unstable-2023-12-2";
+  version = "unstable-2024-1-19";
 
   src = fetchFromGitHub {
     owner = "pret";
     repo = "pokeemerald";
-    rev = "e4149e83f89b8b86478e03b8112c1d1e922e65a6";
-    hash = "sha256-g6A+STo5sPbDuJoDD7dY4jelQJoDiaDG71e0Vx8ZPuw=";
+    rev = "bcd5fc1481dc540d9007f1a82a2862e7d6e7de77";
+    hash = "sha256-Gv0uDOsNRCc4QyW4LG14tL51oL7hVh3NvlmWnj/5QbE=";
   };
 
   nativeBuildInputs = [
     pkg-config
-    devkitpro
+    pkgsCross.arm-embedded.buildPackages.binutils
   ];
 
   buildInputs = [
     libpng
-    devkitpro
+    agbcc
   ];
 
   enableParallelBuilding = true;
   strictDeps = true;
-  makeFlags = [ "DEVKITPRO=${devkitpro}" "DEVKITARM=${devkitpro}/devkitARM" ];
-  buildFlags = [ "modern" ];
+
+  buildPhase = ''
+    runHook preBuild
+
+    cp -r ${agbcc}/tools ./
+    make SHELL="${bash}/bin/bash"
+
+    runHook postBuild
+  '';
 
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/rom
-    cp pokeemerald_modern.gba $out/rom/pokeemerald.gba
+    cp pokeemerald.gba $out/rom/pokeemerald.gba
 
     runHook postInstal
   '';

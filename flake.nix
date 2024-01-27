@@ -17,11 +17,12 @@
           games.pokered = callPackage (./pret/red.nix) { };
           games.shipwright = callPackage (./soh) { };
           games.zelda3 = callPackage (./zelda3) { };
-          games.devkitpro = callPackage (./devkitpro.nix) { };
-          games.pokeemerald = callPackage (./pret/emerald.nix) { devkitpro = games.devkitpro; };
-          games.pokefirered = callPackage (./pret/firered.nix) { devkitpro = games.devkitpro; };
+          games.pokeemerald = callPackage (./pret/emerald.nix) { agbcc = games.agbcc; };
+          games.pokeinclement = callPackage (./pret/inclement.nix) { agbcc = games.agbcc; };
+          games.pokefirered = callPackage (./pret/firered.nix) { agbcc = games.agbcc; };
           games.pokegold = callPackage (./pret/gold.nix) { };
           games.pokeyellow = callPackage (./pret/yellow.nix) { };
+          games.agbcc = callPackage (./pret/agbcc.nix) { };
         };
     in
     utils.lib.eachDefaultSystem

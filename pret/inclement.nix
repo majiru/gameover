@@ -3,20 +3,20 @@
 , fetchFromGitHub
 , libpng
 , pkg-config
-, pkgsCross
 , agbcc
 , bash
+, pkgsCross
 }:
 
 stdenv.mkDerivation {
-  pname = "pokefirered";
-  version = "unstable-2024-1-19";
+  pname = "pokeinclement";
+  version = "1.13";
 
   src = fetchFromGitHub {
-    owner = "pret";
-    repo = "pokefirered";
-    rev = "0c17a3b041a56f176f23145e4a4c0ae758f8d720";
-    hash = "sha256-q2iWTr4MY2O8XBvl9IzkmGwDXGdnYBRGdMZS9qmFiZQ=";
+    owner = "BuffelSaft";
+    repo = "pokeemerald";
+    rev = "v1.13";
+    hash = "sha256-Lg1N07pDprt2XQhoNFp+2cgoy1SOIei+DUoR2AzLv4g=";
   };
 
   nativeBuildInputs = [
@@ -36,7 +36,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     cp -r ${agbcc}/tools ./
-    make SHELL="${bash}/bin/bash" firered leafgreen firered_rev1 leafgreen_rev1
+    make SHELL="${bash}/bin/bash"
 
     runHook postBuild
   '';
@@ -44,14 +44,14 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/rom/
-    cp *.gba $out/rom/
+    mkdir -p $out/rom
+    cp pokeemerald.gba $out/rom/inclementemerald.gba
 
-    runHook postInstall
+    runHook postInstal
   '';
 
   meta = {
-    description = "Pokemon Firered and Leafgreen Decompilation";
+    description = "Pokemon Inclement Emerald";
     maintainers = with lib.maintainers; [ moody ];
     platforms = lib.platforms.linux;
   };
