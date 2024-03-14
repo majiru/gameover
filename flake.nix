@@ -2,7 +2,7 @@
   description = "Overlay for closed source / decompiled games";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     utils.url = "flake-utils";
   };
 
